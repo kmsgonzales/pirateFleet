@@ -43,9 +43,12 @@ class ControlCenter {
     
     func calculateFinalScore(_ gameStats: GameStats) -> Int {
         
-        var finalScore: Int
+    
+        let enemyShips: Int = gameStats.enemyShipsRemaining * gameStats.shipBonus
+        let humanShips: Int = gameStats.humanShipsSunk * gameStats.sinkBonus
+        let guess: Int = (gameStats.numberOfMissesByHuman + gameStats.numberOfHitsOnEnemy) * gameStats.guessPenalty
         
-        finalScore = 0                
+        let finalScore: Int = enemyShips + humanShips - guess
         
         return finalScore
     }
